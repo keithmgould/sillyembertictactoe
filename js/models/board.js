@@ -42,28 +42,29 @@ Tictactoe.Board = Ember.Object.extend({
         }
 
       });
-
-      // now look for diags
-      diagDownSum = 0;
-      $.each([[0,0],[1,1],[2,2]], function (index, pair) {
-        if(that.cells[pair[0]][pair[1]].state == 'isX'){
-          diagDownSum = diagDownSum + 1;
-        }else if(that.cells[pair[0]][pair[1]].state == 'isO'){
-          diagDownSum = diagDownSum - 1;
-        }
-      });
-      diagUpSum = 0;
-      $.each([[2,0],[1,1],[0,2]], function (index, pair) {
-        if(that.cells[pair[0]][pair[1]].state == 'isX'){
-          diagUpSum = diagUpSum + 1;
-        }else if(that.cells[pair[0]][pair[1]].state == 'isO'){
-          diagUpSum = diagUpSum - 1;
-        }
-      });
-      if(rowSum == 3 || columnSum == 3 || diagDownSum == 3 || diagUpSum == 3){ that.set('winner','X'); }
-      if(rowSum == -3 || columnSum == -3 || diagDownSum == -3 || diagUpSum == 3){ that.set('winner','O'); }
-
     });
+
+    // now look for diags
+    diagDownSum = 0;
+    $.each([[0,0],[1,1],[2,2]], function (index, pair) {
+      if(that.cells[pair[0]][pair[1]].state == 'isX'){
+        diagDownSum = diagDownSum + 1;
+      }else if(that.cells[pair[0]][pair[1]].state == 'isO'){
+        diagDownSum = diagDownSum - 1;
+      }
+    });
+
+    diagUpSum = 0;
+    $.each([[2,0],[1,1],[0,2]], function (index, pair) {
+      if(that.cells[pair[0]][pair[1]].state == 'isX'){
+        diagUpSum = diagUpSum + 1;
+      }else if(that.cells[pair[0]][pair[1]].state == 'isO'){
+        diagUpSum = diagUpSum - 1;
+      }
+    });
+
+    if(rowSum == 3 || columnSum == 3 || diagDownSum == 3 || diagUpSum == 3){ that.set('winner','X'); }
+    if(rowSum == -3 || columnSum == -3 || diagDownSum == -3 || diagUpSum == 3){ that.set('winner','O'); }
   },
 
 });
