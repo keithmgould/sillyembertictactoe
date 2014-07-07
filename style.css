@@ -1,0 +1,20 @@
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+
+#board {
+}
+
+table {
+  border: 1px solid black;
+}
+
+td {
+  background-color: red;
+  border: 1px solid black;
+}
+.hidden{
+	display:none;
+}
