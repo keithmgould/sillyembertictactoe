@@ -12,9 +12,21 @@ table {
 }
 
 td {
-  background-color: red;
+  width: 50px;
+  height: 50px;
+  background-color: white;
   border: 1px solid black;
 }
+
+td.isEmpty { background-color: white; }
+td.isX { background-color: red; }
+td.isO { background-color: green; }
+
+#winner{
+  font-size:50px;
+}
+
 .hidden{
 	display:none;
 }
+

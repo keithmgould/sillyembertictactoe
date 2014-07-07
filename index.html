@@ -10,25 +10,24 @@
       <h1>Tic Tac Toe</h1>
       <button {{ action newGame }}>Start a new game</button>
       <br><br>
+      Whose Move: {{ whoseMove }}
+      <br><br>
       <div id='board'>
         <table>
-          <tr> 
-            <td id="cell11" {{ action cellClick }} width=50px height=50px></td>
-            <td id="cell12" {{ action cellClick }}  width=50px height=50px></td>
-            <td id="cell13" {{ action cellClick }} width=50px height=50px></td>
-          </tr>
-          <tr> 
-            <td id="cell21" {{ action cellClick }} width=50px height=50px></td>
-            <td id="cell22" {{ action cellClick }} width=50px height=50px></td>
-            <td id="cell23" {{ action cellClick }} width=50px height=50px></td>
-          </tr>
-          <tr> 
-            <td id="cell31" {{ action cellClick }} width=50px height=50px></td>
-            <td id="cell32" {{ action cellClick }} width=50px height=50px></td>
-            <td id="cell33" {{ action cellClick }} width=50px height=50px></td>
-          </tr>
+          {{#each row in cells}}
+            <tr>
+            {{#each cell in row}}
+              <td {{ action cellClick cell}} {{bind-attr class=cell.state }}></td>
+            {{/each}}
+            </tr>
+          {{/each}}
         </table>
       </div>
+      {{#if winner}}
+      <div id='winner'>
+        {{ whoseMove }} WON!!!
+      </div>
+      {{/if}}
     </script>
     
     <script src="js/libs/jquery-1.10.2.min.js"></script>
@@ -36,7 +35,9 @@
     <script src="js/libs/ember.js"></script>
     <script src="js/application.js"></script>
     <script src="js/router.js"></script>
-    <script src="js/models/game.js"></script>
+    <script src="js/models/cell.js"></script>
+    <script src="js/models/board.js"></script>
+    <script src="js/views/cell_view.js"></script>
     <script src="js/controllers/application.js"></script>
   </body>
 </html>

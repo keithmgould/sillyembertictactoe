@@ -4,6 +4,6 @@ Tictactoe.Router.map(function() {
 
 Tictactoe.ApplicationRoute = Ember.Route.extend({
   model: function () {
-    return Tictactoe.Game.create();
+    return Tictactoe.Board.create();
   }
 });
