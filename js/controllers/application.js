@@ -7,13 +7,14 @@ Tictactoe.ApplicationController = Ember.ObjectController.extend({
 
     cellClick: function(cell) {
       daBoard = this.get('content');
-      if(daBoard.winner != null) { return; } 
+
+      // if we already have a winner, leave.
+      if(daBoard.get('winner') != null) { return; }
       results = cell.occupy(daBoard.get('whoseMove'));
       daBoard.determineWinner();
-      if(daBoard.get('winner') != null) {
-        console.log('winner found!');
-        return;
-      }
+
+      // if we have a new winner, don't swap sides
+      if(daBoard.get('winner') != null) { return; }
       if(results) { daBoard.swapSides(); }
     }
   }
