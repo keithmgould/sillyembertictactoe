@@ -49,6 +49,11 @@ Tictactoe.Board = Ember.Object.extend({
         }
 
       });
+      if(rowSum == 3 || columnSum == 3){
+        that.set('winner', 'X');
+      }else if(rowSum == -3 || columnSum == -3){
+        that.set('winner', 'O');
+      }
     });
 
     // now look for diags
@@ -70,8 +75,8 @@ Tictactoe.Board = Ember.Object.extend({
       }
     });
 
-    if(rowSum == 3  || columnSum == 3  || diagDownSum == 3  || diagUpSum == 3){  that.set('winner','X'); }
-    if(rowSum == -3 || columnSum == -3 || diagDownSum == -3 || diagUpSum == -3){ that.set('winner','O'); }
+    if( diagDownSum == 3  || diagUpSum == 3){  that.set('winner','X'); }
+    if( diagDownSum == -3 || diagUpSum == -3){ that.set('winner','O'); }
   }
 
 });
