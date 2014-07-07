@@ -1,5 +1,10 @@
 Tictactoe.Board = Ember.Object.extend({
   init: function() {
+    this.set('cells', [
+      [Tictactoe.Cell.create(), Tictactoe.Cell.create(), Tictactoe.Cell.create()],
+      [Tictactoe.Cell.create(), Tictactoe.Cell.create(), Tictactoe.Cell.create()],
+      [Tictactoe.Cell.create(), Tictactoe.Cell.create(), Tictactoe.Cell.create()]
+    ]);
     this.resetBoard();
   },
 
@@ -14,17 +19,19 @@ Tictactoe.Board = Ember.Object.extend({
   resetBoard: function() {
     this.set('whoseMove', 'X');
     this.set('winner', null);
-    this.set('cells', [
-      [Tictactoe.Cell.create(), Tictactoe.Cell.create(), Tictactoe.Cell.create()],
-      [Tictactoe.Cell.create(), Tictactoe.Cell.create(), Tictactoe.Cell.create()],
-      [Tictactoe.Cell.create(), Tictactoe.Cell.create(), Tictactoe.Cell.create()]
-    ]);
+    that = this;
+    $.each([0,1,2], function(index, row) {
+      $.each([0,1,2], function(index, column) {
+        that.cells[row][column].set('state', 'isEmpty');
+      });
+    });
   },
 
   determineWinner: function() {
     that = this;
     winnerFound = null;
 
+    // first look for row and column wins
     $.each([0,1,2], function (index, row) {
       rowSum = 0;
       columnSum = 0;
